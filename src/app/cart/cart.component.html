@@ -1,0 +1,14 @@
+<h2>Productos del carrito</h2>
+
+@for (phone of cartList$ | async; track phone.name) {
+<ul>
+    <li> Nombre del producto: {{phone.brand}} : {{phone.name}} </li>
+    <li> Precio: {{phone.price| currency}}</li>
+    <li> Cantidad: {{phone.quantity}}</li>
+</ul>
+}
+@empty {
+<ul>
+    <li> Carrito vacio. </li>
+</ul>
+}

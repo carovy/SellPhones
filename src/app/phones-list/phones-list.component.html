@@ -1,0 +1,37 @@
+<h2>Lista de celulares disponibles</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Cantidad</th>
+            <th>Compra</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (phone of phones; track phone.name) {
+        <tr>
+            <td> <img [src]="phone.image" [alt]="phone.name" class="img-tumbnail" width="100" > </td>
+            <td>  {{phone.name}} </td>
+            <td>{{phone.brand}}</td>
+            <td>{{phone.price| currency}}</td>
+            @if (phone.stock>0) {
+            <td>{{phone.stock}} disponibles</td>
+            }@else {
+            <td> No Stock </td>
+            }
+            <td> <app-input-integer *ngIf="phone.stock" [(quantity)]="phone.quantity" [max]="phone.stock" > </app-input-integer> </td>
+            <td> <button class="btn" (click)="addToCart(phone)"> Comprar </button> </td>
+        </tr>
+        }
+        @empty {
+        <tr>
+            <td> No hay celulares disponibles. </td>
+        </tr>
+        }
+    </tbody>
+</table>
